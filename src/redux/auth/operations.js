@@ -14,7 +14,7 @@ const token = {
   }
 }
 
-const registration = createAsyncThunk('auth/registration', async (userData, thunkApi) => {
+const signUp = createAsyncThunk('auth/signUp', async (userData, thunkApi) => {
   try{
     const {data} = await axios.post('/users/signup', userData)
     token.set(data.token)
@@ -46,4 +46,4 @@ const logOut = createAsyncThunk('auth/logout', async (userData, thunkApi) => {
     }
 })
 
-
+export {logIn, logOut, signUp}
