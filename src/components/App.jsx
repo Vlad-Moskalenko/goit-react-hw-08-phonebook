@@ -1,11 +1,23 @@
-import { Routes, Route } from 'react-router-dom';
+import { Routes, Route, useNavigate } from 'react-router-dom';
+import { useSelector } from 'react-redux';
 
 import { Contacts } from 'pages/Contacts';
 import { LoginForm } from './LoginForm/LoginForm';
 import { RegisterForm } from './RegisterForm/RegisterForm';
 import { Layout } from './Layout/Layout';
+import { selectAuth } from 'redux/auth/selectors';
+import { useEffect } from 'react';
 
 export const App = () => {
+  const { isLoggedIn } = useSelector(selectAuth);
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    if (isLoggedIn) {
+      navigate('/contacts');
+    }
+  });
+
   return (
     <div>
       <Routes>
