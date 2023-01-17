@@ -8,7 +8,7 @@ import { addContact } from 'redux/contacts/operations';
 
 const INITIAL_STATE = {
   name: '',
-  phone: '',
+  number: '',
 };
 
 export const ContactForm = () => {
@@ -58,10 +58,10 @@ export const ContactForm = () => {
         <input
           onChange={onChangeInput}
           type="tel"
-          name="phone"
+          name="number"
           pattern="\+?\d{1,4}?[-.\s]?\(?\d{1,3}?\)?[-.\s]?\d{1,4}[-.\s]?\d{1,4}[-.\s]?\d{1,9}"
           title="Phone number must be digits and can contain spaces, dashes, parentheses and can start with +"
-          value={contact.phone}
+          value={contact.number}
           required
         />
       </label>
