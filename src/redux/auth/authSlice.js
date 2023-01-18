@@ -6,9 +6,10 @@ const authSlice = createSlice({
   name: 'auth',
 
   initialState: {
-    userData: {name: null, email: null},
+    userData: {name: '', email: ''},
     token: null,
-    isLoggedIn: false
+    isLoggedIn: false,
+    isRefreshing: false
   },
 
   extraReducers: {
@@ -33,6 +34,15 @@ const authSlice = createSlice({
     [currentUser.fulfilled](state, {payload}){
       state.userData = payload;
       state.isLoggedIn = true;
+      state.isRefreshing = false;
+    },
+
+    [currentUser.pending](state){
+      state.isRefreshing = true
+    },
+
+    [currentUser.rejected](state){
+      state.isRefreshing = false
     }
   },
 })
