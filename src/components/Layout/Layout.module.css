@@ -1,4 +1,12 @@
 .appWrapper{
-  padding: 15px;
-  max-width: 400px;
+  min-height: calc(100vh - 175px);
+  padding: 60px 15px;
+  display: flex;
+  justify-content: center;
+}
+
+.navigation{
+  display: flex;
+  justify-content: space-between;
+  padding: 15px 30px;
 }

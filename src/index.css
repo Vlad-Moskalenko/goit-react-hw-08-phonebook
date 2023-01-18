@@ -18,8 +18,11 @@ button{
   cursor: pointer;
 }
 
-.app-wrapper{
-  padding: 15px;
-  max-width: 400px;
+ul{
+  margin: 0;
+  padding: 0;
 }
 
+p {
+  margin: 0;
+}
