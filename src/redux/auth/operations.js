@@ -37,13 +37,31 @@ const logIn = createAsyncThunk('auth/login', async (userData, thunkApi) => {
 })
 
 const logOut = createAsyncThunk('auth/logout', async (userData, thunkApi) => {
-    try{
-      await axios.post('/users/logout')
-      token.unset()
-    }
-    catch(e){
-      return thunkApi.rejectWithValue(e.message)
-    }
+  try{
+    await axios.post('/users/logout')
+    token.unset()
+  }
+  catch(e){
+    return thunkApi.rejectWithValue(e.message)
+  }
 })
 
-export {logIn, logOut, signUp}
+const currentUser = createAsyncThunk('auth/currentUser', async (_, thunkApi) => {
+  const {auth} = thunkApi.getState()
+  const persistedToken = auth.token
+
+  if(!persistedToken){
+    return thunkApi.rejectWithValue('Unable to fetch user');
+  }
+
+  try{
+    token.set(persistedToken)
+    const {data} = await axios.get('/users/current')
+    return data
+  }
+  catch(e){
+    return thunkApi.rejectWithValue(e.message)
+  }
+})
+
+export {logIn, logOut, signUp, currentUser}
