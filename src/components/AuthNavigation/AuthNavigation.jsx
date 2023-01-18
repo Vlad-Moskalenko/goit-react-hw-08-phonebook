@@ -13,12 +13,22 @@ export const AuthNavigation = () => {
   ) : (
     <ul className={css.navigationList}>
       <li>
-        <NavLink className={css.link} to="/register">
+        <NavLink
+          className={({ isActive }) =>
+            isActive ? `${css.active} ${css.link}` : css.link
+          }
+          to="/register"
+        >
           Register
         </NavLink>
       </li>
       <li>
-        <NavLink className={css.link} to="/login">
+        <NavLink
+          className={({ isActive }) =>
+            isActive ? `${css.active} ${css.link}` : css.link
+          }
+          to="/login"
+        >
           LogIn
         </NavLink>
       </li>
